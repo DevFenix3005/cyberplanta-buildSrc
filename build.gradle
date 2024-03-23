@@ -21,6 +21,7 @@ dependencies {
     implementation("io.spring.gradle:dependency-management-plugin:1.1.4")
     // https://mvnrepository.com/artifact/com.github.davidmc24.gradle.plugin/gradle-avro-plugin
     implementation 'com.github.davidmc24.gradle.plugin:gradle-avro-plugin:1.9.1'
+    // https://mvnrepository.com/artifact/com.palantir.docker/com.palantir.docker.gradle.plugin
+    implementation 'com.palantir.docker:com.palantir.docker.gradle.plugin:0.36.0'
 
 }
-
