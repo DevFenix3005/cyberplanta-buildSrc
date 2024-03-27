@@ -8,6 +8,9 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'com.rebirth.cyberplanta'
+version = '1.0.2'
+
 repositories {
     // Use the plugin portal to apply community plugins in convention plugins.
     gradlePluginPortal()
