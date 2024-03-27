@@ -5,6 +5,7 @@
 plugins {
     // Support convention plugins written in Groovy. Convention plugins are build scripts in 'src/main' that automatically become available as plugins in the main build.
     id 'groovy-gradle-plugin'
+    id 'maven-publish'
 }
 
 repositories {
@@ -24,4 +25,22 @@ dependencies {
     // https://mvnrepository.com/artifact/com.palantir.docker/com.palantir.docker.gradle.plugin
     implementation 'com.palantir.docker:com.palantir.docker.gradle.plugin:0.36.0'
 
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/DevFenix3005/cyberplanta-buildSrc")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
