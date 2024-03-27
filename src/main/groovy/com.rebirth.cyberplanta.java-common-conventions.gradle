@@ -5,6 +5,7 @@
 plugins {
     // Apply the java Plugin to add support for Java.
     id 'java'
+    id 'maven-publish'
 }
 
 repositories {
@@ -43,4 +44,22 @@ java {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/DevFenix3005/cyberplanta-buildSrc")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
